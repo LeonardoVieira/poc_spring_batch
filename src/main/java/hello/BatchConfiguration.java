@@ -64,7 +64,7 @@ public class BatchConfiguration {
 	}
 
 	/**
-	 * @return the writer
+	 * @return the writer 
 	 */
 	@Bean
 	public ItemWriter<OutputPerson> writer() {
