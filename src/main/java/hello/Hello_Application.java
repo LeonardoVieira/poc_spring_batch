@@ -14,13 +14,13 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @ComponentScan
 @EnableAutoConfiguration
-public class Application {
+public class Hello_Application {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ApplicationContext ctx = SpringApplication.run(Application.class, args);
+		ApplicationContext ctx = SpringApplication.run(Hello_Application.class, args);
 		
 		for (String beanName: ctx.getBeanDefinitionNames())
 			System.out.println(beanName);
