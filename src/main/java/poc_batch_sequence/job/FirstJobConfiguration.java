@@ -23,10 +23,10 @@ import poc_batch_sequence.processor.ExtractEmpresaProcessor;
 public class FirstJobConfiguration {
 
 	@Autowired
-	private JobBuilderFactory jbf;
+	private JobBuilderFactory jobBuilderFactory;
 
 	@Autowired
-	private StepBuilderFactory sbf;
+	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
 	private ItemReader<Empresa> reader;
@@ -43,7 +43,7 @@ public class FirstJobConfiguration {
 	@Bean
 	public Job firstJob() {
 		Job firstJob = null;
-		JobBuilder jobBuilder = jbf.get("firstJob");
+		JobBuilder jobBuilder = jobBuilderFactory.get("firstJob");
 		firstJob = jobBuilder.start(readFirstBaseStep()).build();
 
 		return firstJob;
@@ -56,7 +56,8 @@ public class FirstJobConfiguration {
 	@Bean
 	public Step readFirstBaseStep() {
 		Step myStep = null;
-		SimpleStepBuilder<Empresa, Empresa> stepBuilder = sbf.get("readFirstBaseStep").<Empresa, Empresa> chunk(2);
+		SimpleStepBuilder<Empresa, Empresa> stepBuilder = stepBuilderFactory.get("readFirstBaseStep")
+				.<Empresa, Empresa> chunk(2);
 
 		stepBuilder.reader(reader).processor(processor).writer(writer);
 
